@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+<body class="container">
+
+<header>
+    <%- include('../partials/header', {variant:'mobile'}); %>
+</header>
+
+<main>
+    <ul>
+        <strong>Mobile:</strong> <%= mobile.brand %> <%= mobile.model %>
+        <br>
+        <strong>Price:</strong><%= mobile.price %>€
+    </ul>
+</main>
+
+<footer>
+    <%- include('../partials/footer'); %>
+</footer>
+
+</body>
+</html>

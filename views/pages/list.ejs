@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<body class="container">
+
+<header>
+    <%- include('../partials/header', {variant:'mobiles'}); %>
+</header>
+
+<main>
+    <ul>
+        <% mobiles.forEach(function(e) { %>
+            <li>
+                <strong>Mobile:</strong> <%= e.brand %> <%= e.model %>
+                <script>
+                    var linkDetail = "details/" + <%= e.id %>
+                    document.write('<a href="' + linkDetail + '">Detail</a>');
+                </script>
+            </li>
+        <% }); %>
+    </ul>
+</main>
+
+<footer>
+    <%- include('../partials/footer'); %>
+</footer>
+
+</body>
+</html>
