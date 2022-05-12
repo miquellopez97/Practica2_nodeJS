@@ -24,18 +24,26 @@ app.get('/', function(req, res) {
         mobiles: mobiles
     });
 });
+app.get('/createview', function(req,res) {
+    res.render('pages/create');
+});
 
 app.post('/create', function(req, res) {
-    var id = mobiles.length;
-    var brand = req.body.brand;
-    var name = req.body.name;
-    var price = req.body.price;
+    const id = mobiles.length;
+    const brand = req.body.brand;
+    const name = req.body.name;
+    const price = req.body.price;
 
-    var newMobile = {id : id, brand:brand, name : name, price : price}
+    const newMobile = {
+        id:id,
+        brand:brand, 
+        name:name, 
+        price:price
+    }
 
     mobiles.push(newMobile);
     
-    res.render('pages/create');
+    res.redirect('/details/' + id);
 });
 
 app.get('/details/:id', function(req, res) {
