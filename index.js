@@ -19,7 +19,7 @@ var mobiles = [
     { id: 6, brand: 'Samsung', model: "Galaxy S21 FE 5G", price: 479}
 ];
 
-app.get('/list', function(req, res) {
+app.get('/', function(req, res) {
     res.render('pages/list', {
         mobiles: mobiles
     });
@@ -32,8 +32,6 @@ app.post('/create', function(req, res) {
     var price = req.body.price;
 
     var newMobile = {id : id, brand:brand, name : name, price : price}
-
-    console.log(newMobile);
 
     mobiles.push(newMobile);
     
@@ -52,4 +50,4 @@ app.get('/details/:id', function(req, res) {
 });
 
 app.listen(8080);
-console.log('8080 is the magic port');
+console.log('All okeey!');
