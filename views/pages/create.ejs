@@ -3,7 +3,7 @@
 <body class="container">
 
 <header>
-    <%- include('../partials/header'); %>
+    <%- include('../partials/header', {variant:'value'}); %>
 </header>
 
 <main>
@@ -11,15 +11,15 @@
         <form action="/create" method="post">
             <div>
                 <label>Brand:</label>
-                <input type="text" name="brand" id="brand">
+                <input name="brand" id="brand" {brandValue ? value="" : value=`brandValue`}>
             </div>
             <div>
                 <label>Name:</label>
-                <input type="text" name="name" id="name">
+                <input name="name" id="name" {nameValue ? value="" : value=`nameValue`}>
             </div>
             <div>
                 <label>Price:</label>
-                <input type="number" name="price" id="price">
+                <input name="price" id="price" {priceValue ? value="" : value=`priceValue`}>
             </div>
             <div>
                 <input type="submit"/>

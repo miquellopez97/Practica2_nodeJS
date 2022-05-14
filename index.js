@@ -30,9 +30,35 @@ app.get('/createview', function(req,res) {
 
 app.post('/create', function(req, res) {
     const id = mobiles.length;
-    const brand = req.body.brand;
-    const name = req.body.name;
-    const price = req.body.price;
+    let brand = req.body.brand;
+    let name = req.body.name;
+    let price = req.body.price;
+    let flag = false;
+
+    if (brand.length > 50)
+    {
+        price = "";
+        flag = true;
+    }
+    
+    if( name.length > 50)
+    {
+        name = "";
+        flag = true;
+    }
+
+    if (isNaN(price)){
+        price = 0;
+        flag = true;
+    }
+
+    if (flag){
+        return res.render('pages/create', {
+            brandValue : brand,
+            nameValue : name,
+            priceValue : price
+        });
+    }
 
     const newMobile = {
         id:id,
