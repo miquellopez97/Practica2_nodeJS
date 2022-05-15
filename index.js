@@ -30,7 +30,8 @@ app.get('/createview', function(req,res) {
         value: {
             brandValue: "",
             modelValue: "",
-            priceValue: ""
+            priceValue: "",
+            errMsg: ""
         }
     });
 });
@@ -41,33 +42,38 @@ app.post('/create', function(req, res) {
     let model = req.body.model;
     let price = req.body.price;
     let flag = false;
+    let errMsg = "";
 
     if (brand.length > 50)
     {
         brand = "";
         flag = true;
+        errMsg += "Invalid brand, ";
     }
     
     if( model.length > 50)
     {
         model = "";
         flag = true;
+        errMsg += "Invalid model, ";
     }
 
     if (isNaN(price)){
         price = "";
         flag = true;
+        errMsg += "Invalid price.";
     }
 
     const values = {
         brandValue: brand,
         modelValue: model,
-        priceValue: price
+        priceValue: price,
+        errMsg : errMsg
     }
 
     if (flag) {
-      return res.render("pages/create", {
-          value: values
+        return res.render("pages/create", {
+            value: values
         });
     }
 
