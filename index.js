@@ -24,46 +24,57 @@ app.get('/', function(req, res) {
         mobiles: mobiles
     });
 });
+
 app.get('/createview', function(req,res) {
-    res.render('pages/create');
+    res.render('pages/create', {
+        value: {
+            brandValue: "",
+            modelValue: "",
+            priceValue: ""
+        }
+    });
 });
 
 app.post('/create', function(req, res) {
     const id = mobiles.length;
     let brand = req.body.brand;
-    let name = req.body.name;
+    let model = req.body.model;
     let price = req.body.price;
     let flag = false;
 
     if (brand.length > 50)
     {
-        price = "";
+        brand = "";
         flag = true;
     }
     
-    if( name.length > 50)
+    if( model.length > 50)
     {
-        name = "";
+        model = "";
         flag = true;
     }
 
     if (isNaN(price)){
-        price = 0;
+        price = "";
         flag = true;
     }
 
-    if (flag){
-        return res.render('pages/create', {
-            brandValue : brand,
-            nameValue : name,
-            priceValue : price
+    const values = {
+        brandValue: brand,
+        modelValue: model,
+        priceValue: price
+    }
+
+    if (flag) {
+      return res.render("pages/create", {
+          value: values
         });
     }
 
     const newMobile = {
         id:id,
         brand:brand, 
-        name:name, 
+        model:model, 
         price:price
     }
 
